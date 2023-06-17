@@ -1,0 +1,44 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	grid-row: 4 / 6;
+	grid-column: 1 / 9;
+}
+
+label {
+	margin-bottom: 18px;
+}
+.header {
+	color: #486989;
+}
+
+button {
+	text-align: center;
+	justify-self: center;
+	width: 100px;
+	background-color: #fdf9ed;
+	border: none;
+	color: #486989;
+	padding: 2px 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 20px;
+	transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+	opacity: 0.8;
+}
+
+button:active {
+	background-color: #cac6bb;
+	transform: translateY(2px);
+}
+
+.select {
+	width: 230px;
+}

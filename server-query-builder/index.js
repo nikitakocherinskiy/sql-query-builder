@@ -24,20 +24,11 @@ let dbConfig = {}
 // 	database: dbConfig.database,
 // })
 
-// const mysqlConnection = mysql.createConnection({
-// 	host: dbConfig.host,
-// 	port: dbConfig.port,
-// 	user: dbConfig.user,
-// 	password: dbConfig.password,
-// 	database: dbConfig.database,
-// })
-
 app.use(cors())
 
 app.use(express.json())
 
 app.post('/execute-query', async (req, res) => {
-	console.log('Received request:', req.body)
 	const { dbData, databaseType, query } = req.body
 	Object.assign(dbConfig, dbData)
 	try {
@@ -53,6 +44,13 @@ app.post('/execute-query', async (req, res) => {
 			result = await pgPool.query(query)
 		} else if (databaseType === 'mysql') {
 			result = await new Promise((resolve, reject) => {
+				const mysqlConnection = mysql.createConnection({
+					host: dbConfig.host,
+					port: dbConfig.port,
+					user: dbConfig.user,
+					password: dbConfig.password,
+					database: dbConfig.database,
+				})
 				mysqlConnection.query(query, (error, results) => {
 					if (error) {
 						reject(error)
@@ -84,6 +82,13 @@ app.post('/columns', async (req, res) => {
 			})
 			result = await pgPool.query(query)
 		} else if (databaseType === 'mysql') {
+			const mysqlConnection = mysql.createConnection({
+				host: dbConfig.host,
+				port: dbConfig.port,
+				user: dbConfig.user,
+				password: dbConfig.password,
+				database: dbConfig.database,
+			})
 			result = await new Promise((resolve, reject) => {
 				mysqlConnection.query(query, (error, results) => {
 					if (error) {

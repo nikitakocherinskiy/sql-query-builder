@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import styles from './DatabaseConnection.module.css'
 
 // eslint-disable-next-line react/prop-types
 const DatabaseConnection = ({ setTableList }) => {
@@ -52,13 +53,17 @@ const DatabaseConnection = ({ setTableList }) => {
 	}
 
 	return (
-		<div>
-			<form onSubmit={handleSubmit(onSubmit)} name='DatabaseConnection'>
+		<div className={styles.container}>
+			<form
+				onSubmit={handleSubmit(onSubmit)}
+				name='DatabaseConnection'
+				className={styles.form}
+			>
 				<label>
 					<h4>СУБД:</h4>
 					<select
 						{...register('database', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					>
 						<option value=''>Выберите СУБД</option>
@@ -66,61 +71,79 @@ const DatabaseConnection = ({ setTableList }) => {
 						<option value='mysql'>MySQL</option>
 						<option value='sqlite'>SQLite</option>
 					</select>
-					{errors?.database && <p>{errors?.database?.message || 'Error!'}</p>}
+					{errors?.database && (
+						<p className={styles.error}>
+							{errors?.database?.message || 'Error!'}
+						</p>
+					)}
 				</label>
 				<label>
 					<h4>Хост:</h4>
 					<input
 						{...register('host', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					/>
-					{errors?.host && <p>{errors?.host?.message || 'Error!'}</p>}
+					{errors?.host && (
+						<p className={styles.error}>{errors?.host?.message || 'Error!'}</p>
+					)}
 				</label>
 				<label>
 					<h4>Порт:</h4>
 					<input
 						{...register('port', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					/>
-					{errors?.port && <p>{errors?.port?.message || 'Error!'}</p>}
+					{errors?.port && (
+						<p className={styles.error}>{errors?.port?.message || 'Error!'}</p>
+					)}
 				</label>
 
 				<label>
 					<h4>Имя базы данных:</h4>
 					<input
 						{...register('databaseName', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					/>
 					{errors?.databaseName && (
-						<p>{errors?.databaseName?.message || 'Error!'}</p>
+						<p className={styles.error}>
+							{errors?.databaseName?.message || 'Error!'}
+						</p>
 					)}
 				</label>
 				<label>
 					<h4>Имя пользователя СУБД:</h4>
 					<input
 						{...register('user', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					/>
-					{errors?.user && <p>{errors?.user?.message || 'Error!'}</p>}
+					{errors?.user && (
+						<p className={styles.error}>{errors?.user?.message || 'Error!'}</p>
+					)}
 				</label>
 				<label>
 					<h4>Пароль:</h4>
 					<input
 						type='password'
 						{...register('password', {
-							required: 'This field is required',
+							required: 'Это обязательное поле',
 						})}
 					/>
-					{errors?.password && <p>{errors?.password?.message || 'Error!'}</p>}
+					{errors?.password && (
+						<p className={styles.error}>
+							{errors?.password?.message || 'Error!'}
+						</p>
+					)}
 				</label>
 
-				<button type='submit'>Submit</button>
+				<button type='submit' className={styles.button}>
+					Подключиться
+				</button>
 			</form>
-			{isShowMassage && <p>Thank you for submitting the form!</p>}
+			{isShowMassage && <p>Данные приняты, ожидайте</p>}
 		</div>
 	)
 }

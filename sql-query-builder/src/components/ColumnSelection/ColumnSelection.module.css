@@ -1,0 +1,14 @@
+.header {
+	margin-top: 20px;
+	color: #486989;
+}
+
+.query {
+	border-radius: 10px;
+	text-align: center;
+	background-color: #fdf9ed;
+	padding: 20px 20px 20px 20px;
+	margin-top: 10px;
+	color: #486989;
+	font-size: 20px;
+}

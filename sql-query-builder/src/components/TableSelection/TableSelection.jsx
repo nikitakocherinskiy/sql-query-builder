@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import ColumnSelection from './ColumnSelection'
+import ColumnSelection from '../ColumnSelection/ColumnSelection'
+import styles from './TableSelection.module.css'
 
 /* eslint-disable react/prop-types */
 const TableSelection = ({ tableList }) => {
@@ -44,14 +45,19 @@ const TableSelection = ({ tableList }) => {
 	})
 
 	return (
-		<div>
+		<div className={styles.container}>
 			{isTables && (
 				<label>
-					<h4>Выберите таблицу:</h4>
-					<select onChange={handleChange}>{tables}</select>
+					<h4 className={styles.header}>Выберите таблицу:</h4>
+					<select onChange={handleChange} className={styles.select}>
+						{tables}
+					</select>
 				</label>
 			)}
-			<ColumnSelection columnList={columnList} />
+			<ColumnSelection
+				columnList={columnList}
+				selectedOption={selectedOption}
+			/>
 		</div>
 	)
 }
