@@ -6,7 +6,7 @@ import Button from '../Button/Button'
 import ErrorModal from '../ErrorModal/ErrorModal'
 
 // eslint-disable-next-line react/prop-types
-const DatabaseConnection = ({ setTableList }) => {
+const DatabaseConnection = ({ setTableList, onValueChange }) => {
 	const {
 		register,
 		formState,
@@ -39,6 +39,7 @@ const DatabaseConnection = ({ setTableList }) => {
 	const onSubmit = (data) => {
 		const fetchDatabase = async () => {
 			try {
+				onValueChange(data.database)
 				const response = await axios.post(
 					'http://localhost:5000/execute-query',
 					{

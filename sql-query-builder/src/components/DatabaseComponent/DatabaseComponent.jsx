@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import styles from './DatabaseComponent.module.css'
 import axios from 'axios'
 
-const DatabaseComponent = ({ query }) => {
+const DatabaseComponent = ({ query, database }) => {
 	const [headers, setHeaders] = useState([])
 
 	const [data, setData] = useState([])
@@ -11,13 +11,12 @@ const DatabaseComponent = ({ query }) => {
 	const fetchDatabase = async (data) => {
 		try {
 			const response = await axios.post('http://localhost:5000/get-data', {
-				databaseType: 'postgresql',
+				databaseType: database,
 				query: `${query}`,
 			})
 			setHeaders(response.data.fields.map((col) => col.name))
 			setData(response.data.rows)
-			console.log(headers)
-			console.log(data)
+			console.log(response.data.rows)
 		} catch (error) {
 			console.error('Error fetching columns:', error)
 		}
@@ -40,9 +39,12 @@ const DatabaseComponent = ({ query }) => {
 				<tbody>
 					{data.map((el, index) => (
 						<tr key={index}>
-							{headers.map((header, index) => (
-								<td key={index}>{el[header]}</td>
-							))}
+							{headers.map((header, index) => {
+								if (header === 'picture') {
+									return <td key={index}>picture</td>
+								}
+								return <td key={index}>{el[header]}</td>
+							})}
 						</tr>
 					))}
 				</tbody>

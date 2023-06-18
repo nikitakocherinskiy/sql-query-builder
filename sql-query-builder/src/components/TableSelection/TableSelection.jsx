@@ -4,7 +4,7 @@ import ColumnSelection from '../ColumnSelection/ColumnSelection'
 import styles from './TableSelection.module.css'
 
 /* eslint-disable react/prop-types */
-const TableSelection = ({ tableList }) => {
+const TableSelection = ({ tableList, database }) => {
 	const [isTables, setIsTables] = useState(false)
 	const [selectedOption, setSelectedOption] = useState('')
 	const [columnList, setColumnList] = useState([])
@@ -17,15 +17,12 @@ const TableSelection = ({ tableList }) => {
 
 	const handleChange = async (e) => {
 		setSelectedOption(e.target.value)
-		console.log(selectedOption)
 		try {
 			const response = await axios.post('http://localhost:5000/columns', {
-				databaseType: 'postgresql',
+				databaseType: database,
 				query: `SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '${e.target.value}';`,
 			})
-			console.log(response)
 			setColumnList(response.data.rows.map((col) => col.column_name))
-			console.log(columnList)
 		} catch (error) {
 			console.error('Error fetching columns:', error)
 		}
@@ -52,6 +49,7 @@ const TableSelection = ({ tableList }) => {
 			<ColumnSelection
 				columnList={columnList}
 				selectedOption={selectedOption}
+				database={database}
 			/>
 		</div>
 	)

@@ -11,6 +11,7 @@ import DatabaseComponent from '../DatabaseComponent/DatabaseComponent'
 const ColumnSelection = ({
 	columnList,
 	selectedOption = { selectedOption },
+	database,
 }) => {
 	const [fields, setFields] = useState([
 		{ name: 'firstName', label: 'First Name' },
@@ -88,7 +89,7 @@ const ColumnSelection = ({
 						/>
 						<Button text='Копировать' onClick={copyText} />
 					</pre>
-					<DatabaseComponent query={queryToExecute} />
+					<DatabaseComponent query={queryToExecute} database={database} />
 				</div>
 			) : (
 				<div>Что-то пошло не так, пожалуйста попробуйте позже</div>
