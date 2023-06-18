@@ -2,6 +2,8 @@ import { useForm } from 'react-hook-form'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import styles from './DatabaseConnection.module.css'
+import Button from '../Button/Button'
+import ErrorModal from '../ErrorModal/ErrorModal'
 
 // eslint-disable-next-line react/prop-types
 const DatabaseConnection = ({ setTableList }) => {
@@ -13,6 +15,7 @@ const DatabaseConnection = ({ setTableList }) => {
 		reset,
 	} = useForm({ mode: 'onBlur' })
 	const [isShowMassage, setIsShowMassage] = useState(false)
+	const [isVisibleModal, setIsVisibleModal] = useState(false)
 
 	useEffect(() => {
 		if (formState.isSubmitSuccessful) {
@@ -46,6 +49,7 @@ const DatabaseConnection = ({ setTableList }) => {
 				)
 				setTableList(response.data.rows.map((col) => col.table_name))
 			} catch (error) {
+				setIsVisibleModal(true)
 				console.error('Error fetching columns:', error)
 			}
 		}
@@ -69,7 +73,6 @@ const DatabaseConnection = ({ setTableList }) => {
 						<option value=''>Выберите СУБД</option>
 						<option value='postgresql'>PostgreSQL</option>
 						<option value='mysql'>MySQL</option>
-						<option value='sqlite'>SQLite</option>
 					</select>
 					{errors?.database && (
 						<p className={styles.error}>
@@ -139,11 +142,13 @@ const DatabaseConnection = ({ setTableList }) => {
 					)}
 				</label>
 
-				<button type='submit' className={styles.button}>
+				{/* <button type='submit' className={styles.button}>
 					Подключиться
-				</button>
+				</button> */}
+				<Button className={styles.button} type='submit' text='Подключиться' />
 			</form>
 			{isShowMassage && <p>Данные приняты, ожидайте</p>}
+			<ErrorModal visible={isVisibleModal} setVisible={setIsVisibleModal} />
 		</div>
 	)
 }

@@ -5,11 +5,6 @@ import styles from './TableSelection.module.css'
 
 /* eslint-disable react/prop-types */
 const TableSelection = ({ tableList }) => {
-	// const {
-	// 	register,
-	// 	formState: { errors },
-	// } = useForm({ mode: 'onBlur' })
-
 	const [isTables, setIsTables] = useState(false)
 	const [selectedOption, setSelectedOption] = useState('')
 	const [columnList, setColumnList] = useState([])

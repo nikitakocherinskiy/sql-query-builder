@@ -1,0 +1,51 @@
+.container {
+	background-color: #fdf9ed;
+	max-width: 850px;
+	max-height: 650px;
+	margin: 0 auto;
+	overflow-y: scroll;
+	margin-top: 40px;
+	scrollbar-width: thin;
+}
+
+table {
+	border-collapse: collapse;
+	flex-shrink: 0;
+}
+
+.container::-webkit-scrollbar {
+	background-color: #fdf9ed;
+	height: 8px;
+	width: 8px;
+	margin: 4px;
+}
+
+.container::-webkit-scrollbar-thumb {
+	background-color: #3f556b;
+	border-radius: 6px;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+	background-color: #18222d;
+}
+
+.container::-webkit-scrollbar-track {
+	background-color: #a7a6a3;
+	border-radius: 4px;
+}
+
+td {
+	color: #2e4256;
+}
+
+th,
+td {
+	text-align: center;
+	border: 2px solid #486989;
+	padding: 8px;
+}
+
+th {
+	background-color: #cdcabf;
+	color: #486989;
+}
