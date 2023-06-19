@@ -17,7 +17,6 @@ const ColumnSelection = ({
 		{ name: 'firstName', label: 'First Name' },
 		{ name: 'lastName', label: 'Last Name' },
 	])
-	// eslint-disable-next-line no-unused-vars
 	const [initialQuery, setInitialQuery] = useState({
 		combinator: 'and',
 		rules: [],

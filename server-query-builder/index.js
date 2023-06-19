@@ -6,23 +6,7 @@ const cors = require('cors')
 app.use(express.json({ charset: 'utf-8' }))
 const port = 5000
 
-// const dbConfig = {
-// 	host: 'localhost',
-// 	port: '5432',
-// 	user: 'postgres',
-// 	password: 'nikita1947',
-// 	database: 'northwind',
-// }
-
 let dbConfig = {}
-
-// const pgPool = new Pool({
-// 	host: dbConfig.host,
-// 	port: dbConfig.port,
-// 	user: dbConfig.user,
-// 	password: dbConfig.password,
-// 	database: dbConfig.database,
-// })
 
 app.use(cors())
 

@@ -42,6 +42,7 @@ const TableSelection = ({ tableList, database }) => {
 				<label>
 					<h4 className={styles.header}>Выберите таблицу:</h4>
 					<select onChange={handleChange} className={styles.select}>
+						<option>Выберите таблицу</option>
 						{tables}
 					</select>
 				</label>

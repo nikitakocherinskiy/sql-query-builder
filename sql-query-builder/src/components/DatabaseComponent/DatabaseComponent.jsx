@@ -8,7 +8,7 @@ const DatabaseComponent = ({ query, database }) => {
 
 	const [data, setData] = useState([])
 
-	const fetchDatabase = async (data) => {
+	const fetchDatabase = async () => {
 		try {
 			const response = await axios.post('http://localhost:5000/get-data', {
 				databaseType: database,
